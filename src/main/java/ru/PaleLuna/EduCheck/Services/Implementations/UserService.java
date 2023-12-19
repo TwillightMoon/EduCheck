@@ -35,12 +35,7 @@ public class UserService implements UnitService<User> {
     }
 
     @Override
-    public void Delete(User unit) {
-        _repos.Delete(unit);
-    }
-
-    @Override
-    public void DeleteByID(int id) {
-        _repos.DeleteUnitByID(id);
+    public boolean DeleteByID(int id) {
+        return _repos.DeleteUnitByID(id);
     }
 }

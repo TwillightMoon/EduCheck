@@ -7,6 +7,5 @@ public interface UnitService<T> {
     T Save(T unit);
     T FindByID(int id);
     T Update(T unit);
-    void Delete(T unit);
-    void DeleteByID(int id);
+    boolean DeleteByID(int id);
 }

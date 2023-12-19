@@ -1,6 +1,7 @@
 package ru.PaleLuna.EduCheck.Controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,21 +31,40 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public User FindById(@PathVariable("id") int id){
-        return _userService.FindByID(id);
+    public ResponseEntity<User> FindById(@PathVariable("id") int id){
+        User user = _userService.FindByID(id);
+        boolean isUser = IsNotNull(user);
+
+        if(isUser)
+            return ResponseEntity.ok(user);
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
     @PutMapping("/update")
     @ResponseBody
-    public User Update(@RequestBody User user){
-        return _userService.Update(user);
+    public ResponseEntity<String> Update(@RequestBody User user){
+        boolean isUser = IsNotNull(_userService.Update(user));
+
+        if(isUser)
+            return ResponseEntity.ok("User was updated");
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
     }
 
     //TODO доделать вариации ответов
     @DeleteMapping("delete/{id}")
     public ResponseEntity<String> DeleteById(@PathVariable("id") int id){
-        _userService.DeleteByID(id);
 
-        return ResponseEntity.ok("User was deleted");
+        boolean isDeleted = _userService.DeleteByID(id);
+
+        if(isDeleted)
+            return ResponseEntity.ok("User was deleted");
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+
+    private boolean IsNotNull(User user) {
+        return user != null;
     }
 }

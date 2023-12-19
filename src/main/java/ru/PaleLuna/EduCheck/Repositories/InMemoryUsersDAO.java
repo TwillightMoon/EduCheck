@@ -41,15 +41,14 @@ public class InMemoryUsersDAO {
         return null;
     }
 
-    public void Delete(User unit) {
-        USERS.remove(unit);
-    }
-
-    public void DeleteUnitByID(int id) {
+    public boolean DeleteUnitByID(int id) {
         User user = FindByID(id);
+        boolean isUser = user != null;
 
-        if(user != null)
+        if(isUser)
             USERS.remove(user);
+
+        return isUser;
     }
 
 }

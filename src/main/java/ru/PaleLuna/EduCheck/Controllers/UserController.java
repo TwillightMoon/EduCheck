@@ -2,9 +2,7 @@ package ru.PaleLuna.EduCheck.Controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Model.User;
 import ru.PaleLuna.EduCheck.Services.Implementations.UserService;
 
@@ -21,5 +19,28 @@ public class UserController {
     @ResponseBody
     public List<User> GetAllUsers(){
         return _userService.FindAll();
+    }
+
+    @PostMapping("/save")
+    @ResponseBody
+    public User SaveUser(@RequestBody User user){
+        return _userService.Save(user);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public User FindById(@PathVariable("id") int id){
+        return _userService.FindByID(id);
+    }
+
+    @PutMapping("/update")
+    @ResponseBody
+    public User Update(@RequestBody User user){
+        return _userService.Update(user);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void DeleteById(@PathVariable("id") int id){
+        _userService.DeleteByID(id);
     }
 }

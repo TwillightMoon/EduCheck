@@ -17,7 +17,6 @@ public class User {
 
     //Personal information
     private String firstName;
-    private String secondName;
     private String lastName;
 
     private LocalDate dayOfBirth;

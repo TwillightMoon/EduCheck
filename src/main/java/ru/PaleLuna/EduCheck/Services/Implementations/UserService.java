@@ -3,7 +3,7 @@ package ru.PaleLuna.EduCheck.Services.Implementations;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.PaleLuna.EduCheck.Model.User;
-import ru.PaleLuna.EduCheck.Repositories.InMemoryUsersDAO;
+import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemoryUsersDAO;
 import ru.PaleLuna.EduCheck.Services.UnitService;
 
 import java.util.List;
@@ -36,6 +36,6 @@ public class UserService implements UnitService<User> {
 
     @Override
     public boolean DeleteByID(int id) {
-        return _repos.DeleteUnitByID(id);
+        return _repos.DeleteByID(id);
     }
 }

@@ -1,14 +1,15 @@
-package ru.PaleLuna.EduCheck.Repositories;
+package ru.PaleLuna.EduCheck.Repositories.Implementations;
 
 import org.springframework.stereotype.Repository;
 import ru.PaleLuna.EduCheck.Model.User;
+import ru.PaleLuna.EduCheck.Repositories.InMemoryDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 @Repository
-public class InMemoryUsersDAO {
+public class InMemoryUsersDAO implements InMemoryDAO<User> {
     private final List<User> USERS = new ArrayList<>();
 
     public List<User> FindAll(){
@@ -41,7 +42,8 @@ public class InMemoryUsersDAO {
         return null;
     }
 
-    public boolean DeleteUnitByID(int id) {
+    @Override
+    public boolean DeleteByID(int id) {
         User user = FindByID(id);
         boolean isUser = user != null;
 
@@ -50,5 +52,4 @@ public class InMemoryUsersDAO {
 
         return isUser;
     }
-
 }

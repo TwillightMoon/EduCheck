@@ -15,10 +15,10 @@ public class UserController {
     @ResponseBody
     public List<User> GetAllUsers(){
         return List.of(
-                User.builder()._id(1)._login("FirstLog")._email("Ex@g.com")._password("abc")._firstName("Josh").build(),
-                User.builder()._id(2)._login("SecondtLog")._email("Ex1@g.com")._password("bcd")._firstName("Josh").build(),
-                User.builder()._id(3)._login("ThirdLog")._email("Ex2@g.com")._password("cde")._firstName("Josh").build(),
-                User.builder()._id(4)._login("FourthLog")._email("Ex3@g.com")._password("def")._firstName("Josh").build()
+                User.builder().id(1).login("FirstLog").email("Ex@g.com").password("abc").firstName("Josh").build(),
+                User.builder().id(2).login("SecondtLog").email("Ex1@g.com").password("bcd").firstName("Josh").build(),
+                User.builder().id(3).login("ThirdLog").email("Ex2@g.com").password("cde").firstName("Josh").build(),
+                User.builder().id(4).login("FourthLog").email("Ex3@g.com").password("def").firstName("Josh").build()
         );
     }
 }

@@ -9,17 +9,17 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class User {
-    private int _id;
+    private int id;
 
     //Login Data
-    private String _login;
-    private String _email;
-    private String _password;
+    private String login;
+    private String email;
+    private String password;
 
     //Personal information
-    private String _firstName;
-    private String _secondName;
-    private String _lastName;
+    private String firstName;
+    private String secondName;
+    private String lastName;
 
-    private LocalDate _dayOfBirth;
+    private LocalDate dayOfBirth;
 }

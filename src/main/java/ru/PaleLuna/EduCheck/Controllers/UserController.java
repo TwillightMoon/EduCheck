@@ -1,6 +1,7 @@
 package ru.PaleLuna.EduCheck.Controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Model.User;
@@ -39,8 +40,11 @@ public class UserController {
         return _userService.Update(user);
     }
 
+    //TODO доделать вариации ответов
     @DeleteMapping("delete/{id}")
-    public void DeleteById(@PathVariable("id") int id){
+    public ResponseEntity<String> DeleteById(@PathVariable("id") int id){
         _userService.DeleteByID(id);
+
+        return ResponseEntity.ok("User was deleted");
     }
 }

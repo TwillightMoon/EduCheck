@@ -1,14 +1,13 @@
 package ru.PaleLuna.EduCheck.Model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
-public class User {
-    private int id;
+@AllArgsConstructor
+public class User extends Unit {
 
     //Login Data
     private String login;

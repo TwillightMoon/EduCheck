@@ -2,14 +2,14 @@ package ru.PaleLuna.EduCheck.Repositories.Implementations;
 
 import org.springframework.stereotype.Repository;
 import ru.PaleLuna.EduCheck.Model.User;
-import ru.PaleLuna.EduCheck.Repositories.InMemoryDAO;
+import ru.PaleLuna.EduCheck.Repositories.IInMemoryDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 @Repository
-public class InMemoryUsersDAO implements InMemoryDAO<User> {
+public class InMemoryUsersDAO implements IInMemoryDAO<User> {
     private final List<User> USERS = new ArrayList<>();
 
     public List<User> FindAll(){

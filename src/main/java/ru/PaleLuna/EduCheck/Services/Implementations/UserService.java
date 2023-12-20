@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.PaleLuna.EduCheck.Model.User;
 import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemoryUsersDAO;
-import ru.PaleLuna.EduCheck.Services.UnitService;
+import ru.PaleLuna.EduCheck.Services.IUnitService;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UnitService<User> {
+public class UserService implements IUnitService<User> {
 
     private final InMemoryUsersDAO _repos;
 

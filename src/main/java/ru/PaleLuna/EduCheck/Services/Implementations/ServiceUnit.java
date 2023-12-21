@@ -2,6 +2,7 @@ package ru.PaleLuna.EduCheck.Services.Implementations;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.PaleLuna.EduCheck.Model.Unit;
 import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemoryDAO;
 import ru.PaleLuna.EduCheck.Services.IUnitService;

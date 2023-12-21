@@ -31,7 +31,7 @@ public class UnitController<T extends Unit> implements IUnitController<T> {
     @Override
     @ResponseBody
     @GetMapping("{id}")
-    public ResponseEntity<T> FindById(int id) {
+    public ResponseEntity<T> FindById(@PathVariable("id") int id) {
         T unit = _service.FindByID(id);
         boolean isUser = IsNotNull(unit);
 
@@ -54,7 +54,7 @@ public class UnitController<T extends Unit> implements IUnitController<T> {
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> DeleteById(int id) {
+    public ResponseEntity<String> DeleteById(@PathVariable("id") int id) {
         boolean isDeleted = _service.DeleteByID(id);
 
         if(isDeleted)

@@ -42,4 +42,5 @@ public class StudentController extends UnitController<Student>{
     public ResponseEntity<String> DeleteById(@PathVariable("id") int id) {
         return super.DeleteById(id);
     }
+
 }

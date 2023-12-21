@@ -1,13 +1,9 @@
 package ru.PaleLuna.EduCheck.Controllers;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Model.User;
-import ru.PaleLuna.EduCheck.Services.Implementations.ServiceUnit;
 import ru.PaleLuna.EduCheck.Services.Implementations.UserService;
 
 import java.util.List;
@@ -22,18 +18,17 @@ public class UserController extends UnitController<User>{
 
     @Override
     @GetMapping
-    public List<User> GetAllUsers() {
-        return super.GetAllUsers();
+    public List<User> GetAllUnits() {
+        return super.GetAllUnits();
     }
 
     @Override
     @PostMapping("/save")
-    public User SaveUser(@RequestBody User unit) {
-        return super.SaveUser(unit);
+    public User SaveUnit(@RequestBody User unit) {
+        return super.SaveUnit(unit);
     }
 
     @Override
-    @ResponseBody
     @GetMapping("{id}")
     public ResponseEntity<User> FindById(@PathVariable("id") int id) {
         return super.FindById(id);

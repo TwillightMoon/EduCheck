@@ -17,13 +17,13 @@ public class UnitController<T extends Unit> implements IUnitController<T> {
 
     @Override
     @ResponseBody
-    public List<T> GetAllUsers() {
+    public List<T> GetAllUnits() {
         return _service.FindAll();
     }
 
     @Override
     @ResponseBody
-    public T SaveUser(@RequestBody T unit) {
+    public T SaveUnit(@RequestBody T unit) {
         return _service.Save(unit);
     }
 

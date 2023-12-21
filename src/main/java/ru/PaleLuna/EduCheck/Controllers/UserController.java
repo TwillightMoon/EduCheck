@@ -1,70 +1,53 @@
 package ru.PaleLuna.EduCheck.Controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Model.User;
+import ru.PaleLuna.EduCheck.Services.Implementations.ServiceUnit;
 import ru.PaleLuna.EduCheck.Services.Implementations.UserService;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/v1/user")
-@AllArgsConstructor
-public class UserController {
+public class UserController extends UnitController<User>{
 
-    private final UserService _userService;
+    public UserController(UserService _service) {
+        super(_service);
+    }
 
+    @Override
     @GetMapping
-    @ResponseBody
-    public List<User> GetAllUsers(){
-        return _userService.FindAll();
+    public List<User> GetAllUsers() {
+        return super.GetAllUsers();
     }
 
+    @Override
     @PostMapping("/save")
-    @ResponseBody
-    public User SaveUser(@RequestBody User user){
-        return _userService.Save(user);
+    public User SaveUser(@RequestBody User unit) {
+        return super.SaveUser(unit);
     }
 
-    @GetMapping("/{id}")
+    @Override
     @ResponseBody
-    public ResponseEntity<User> FindById(@PathVariable("id") int id){
-        User user = _userService.FindByID(id);
-        boolean isUser = IsNotNull(user);
-
-        if(isUser)
-            return ResponseEntity.ok(user);
-        else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    @GetMapping("{id}")
+    public ResponseEntity<User> FindById(@PathVariable("id") int id) {
+        return super.FindById(id);
     }
 
+    @Override
     @PutMapping("/update")
-    @ResponseBody
-    public ResponseEntity<String> Update(@RequestBody User user){
-        boolean isUser = IsNotNull(_userService.Update(user));
-
-        if(isUser)
-            return ResponseEntity.ok("User was updated");
-        else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    public ResponseEntity<String> Update(@RequestBody User unit) {
+        return super.Update(unit);
     }
 
-    //TODO доделать вариации ответов
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<String> DeleteById(@PathVariable("id") int id){
-
-        boolean isDeleted = _userService.DeleteByID(id);
-
-        if(isDeleted)
-            return ResponseEntity.ok("User was deleted");
-        else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-    }
-
-    private boolean IsNotNull(User user) {
-        return user != null;
+    @Override
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> DeleteById(@PathVariable("id") int id) {
+        return super.DeleteById(id);
     }
 }

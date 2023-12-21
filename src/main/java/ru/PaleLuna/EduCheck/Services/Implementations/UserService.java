@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class UserService extends ServiceUnit<User> {
-    public UserService() {
-        super(new InMemoryUsersDAO());
+    public UserService(InMemoryUsersDAO repos) {
+        super(repos);
     }
 }

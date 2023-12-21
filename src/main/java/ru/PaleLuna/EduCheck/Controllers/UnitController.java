@@ -3,8 +3,7 @@ package ru.PaleLuna.EduCheck.Controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Model.Unit;
 import ru.PaleLuna.EduCheck.Services.Implementations.ServiceUnit;
 
@@ -17,18 +16,21 @@ public class UnitController<T extends Unit> implements IUnitController<T> {
 
     @Override
     @ResponseBody
+    @GetMapping
     public List<T> GetAllUnits() {
         return _service.FindAll();
     }
 
     @Override
     @ResponseBody
+    @PostMapping("/save")
     public T SaveUnit(@RequestBody T unit) {
         return _service.Save(unit);
     }
 
     @Override
     @ResponseBody
+    @GetMapping("{id}")
     public ResponseEntity<T> FindById(int id) {
         T unit = _service.FindByID(id);
         boolean isUser = IsNotNull(unit);
@@ -40,6 +42,7 @@ public class UnitController<T extends Unit> implements IUnitController<T> {
     }
 
     @Override
+    @PutMapping("/update")
     public ResponseEntity<String> Update(@RequestBody T unit) {
         boolean isUser = IsNotNull(_service.Update(unit));
 
@@ -50,6 +53,7 @@ public class UnitController<T extends Unit> implements IUnitController<T> {
     }
 
     @Override
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> DeleteById(int id) {
         boolean isDeleted = _service.DeleteByID(id);
 

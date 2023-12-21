@@ -17,31 +17,26 @@ public class UserController extends UnitController<User>{
     }
 
     @Override
-    @GetMapping
     public List<User> GetAllUnits() {
         return super.GetAllUnits();
     }
 
     @Override
-    @PostMapping("/save")
     public User SaveUnit(@RequestBody User unit) {
         return super.SaveUnit(unit);
     }
 
     @Override
-    @GetMapping("{id}")
     public ResponseEntity<User> FindById(@PathVariable("id") int id) {
         return super.FindById(id);
     }
 
     @Override
-    @PutMapping("/update")
     public ResponseEntity<String> Update(@RequestBody User unit) {
         return super.Update(unit);
     }
 
     @Override
-    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> DeleteById(@PathVariable("id") int id) {
         return super.DeleteById(id);
     }

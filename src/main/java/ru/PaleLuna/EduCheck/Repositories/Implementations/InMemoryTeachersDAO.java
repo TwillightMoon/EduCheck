@@ -1,4 +1,8 @@
 package ru.PaleLuna.EduCheck.Repositories.Implementations;
 
-public class InMemoryTeachersDAO {
+import org.springframework.stereotype.Repository;
+import ru.PaleLuna.EduCheck.Model.Teacher;
+
+@Repository
+public class InMemoryTeachersDAO extends InMemoryDAO<Teacher>{
 }

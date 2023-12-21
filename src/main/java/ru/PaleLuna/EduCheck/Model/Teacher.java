@@ -1,4 +1,15 @@
 package ru.PaleLuna.EduCheck.Model;
-//TODO Реализовать сущность преподавателя
-public class Teacher {
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@AllArgsConstructor
+@Data
+public class Teacher extends Unit {
+    private int idUser;
+
+    public Teacher(final int id, final int idUser){
+        this.id = id;
+        this.idUser = idUser;
+    }
 }

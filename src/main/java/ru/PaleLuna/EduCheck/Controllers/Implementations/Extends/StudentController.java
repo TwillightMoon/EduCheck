@@ -1,0 +1,17 @@
+package ru.PaleLuna.EduCheck.Controllers.Implementations.Extends;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import ru.PaleLuna.EduCheck.Controllers.Implementations.UnitController;
+import ru.PaleLuna.EduCheck.Model.Extends.Student;
+import ru.PaleLuna.EduCheck.Services.Implementations.Extends.StudentService;
+
+//TODO
+@Controller
+@RequestMapping("/v1/student")
+public class StudentController extends UnitController<Student> {
+
+    public StudentController(StudentService service) {
+        super(service);
+    }
+}

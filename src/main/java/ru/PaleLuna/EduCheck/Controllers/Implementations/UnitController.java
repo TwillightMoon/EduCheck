@@ -1,16 +1,17 @@
-package ru.PaleLuna.EduCheck.Controllers;
+package ru.PaleLuna.EduCheck.Controllers.Implementations;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.PaleLuna.EduCheck.Controllers.IUnitController;
 import ru.PaleLuna.EduCheck.Model.Unit;
 import ru.PaleLuna.EduCheck.Services.Implementations.ServiceUnit;
 
 import java.util.List;
 
 @AllArgsConstructor
-public class UnitController<T extends Unit> implements IUnitController<T> {
+public abstract class UnitController<T extends Unit> implements IUnitController<T> {
 
     private final ServiceUnit<T> _service;
 

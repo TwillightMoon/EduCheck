@@ -2,7 +2,6 @@ package ru.PaleLuna.EduCheck.Repositories.Implementations;
 
 import lombok.AllArgsConstructor;
 import ru.PaleLuna.EduCheck.Model.Unit;
-import ru.PaleLuna.EduCheck.Model.User;
 import ru.PaleLuna.EduCheck.Repositories.IInMemoryDAO;
 
 import java.util.ArrayList;

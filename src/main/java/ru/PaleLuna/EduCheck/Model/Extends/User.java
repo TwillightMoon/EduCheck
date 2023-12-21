@@ -1,6 +1,7 @@
-package ru.PaleLuna.EduCheck.Model;
+package ru.PaleLuna.EduCheck.Model.Extends;
 
 import lombok.*;
+import ru.PaleLuna.EduCheck.Model.Unit;
 
 import java.time.LocalDate;
 

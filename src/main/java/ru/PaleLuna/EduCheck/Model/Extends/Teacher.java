@@ -1,7 +1,8 @@
-package ru.PaleLuna.EduCheck.Model;
+package ru.PaleLuna.EduCheck.Model.Extends;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import ru.PaleLuna.EduCheck.Model.Unit;
 
 @AllArgsConstructor
 @Data

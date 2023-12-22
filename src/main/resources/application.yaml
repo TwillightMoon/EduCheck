@@ -1,1 +1,13 @@
+# Server
 
+#DataBase
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/educheck_db
+    username: root
+    password: RedStar2001
+    driver-class-name: com.mysql.cj.jdbc.Driver

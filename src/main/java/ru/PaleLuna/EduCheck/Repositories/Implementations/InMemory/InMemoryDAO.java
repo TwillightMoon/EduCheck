@@ -1,4 +1,4 @@
-package ru.PaleLuna.EduCheck.Repositories.Implementations;
+package ru.PaleLuna.EduCheck.Repositories.Implementations.InMemory;
 
 import lombok.AllArgsConstructor;
 import ru.PaleLuna.EduCheck.Model.Unit;
@@ -21,7 +21,7 @@ public abstract class InMemoryDAO<T extends Unit> implements IInMemoryDAO<T> {
         return unit;
     }
 
-    public T FindByID(int id) {
+    public T FindByID(Long id) {
         return UNITS.stream().
                 filter(element -> element.getId() == id)
                 .findFirst()
@@ -43,7 +43,7 @@ public abstract class InMemoryDAO<T extends Unit> implements IInMemoryDAO<T> {
     }
 
     @Override
-    public boolean DeleteByID(int id) {
+    public boolean DeleteByID(Long id) {
         T unit = FindByID(id);
         boolean isUser = unit != null;
 

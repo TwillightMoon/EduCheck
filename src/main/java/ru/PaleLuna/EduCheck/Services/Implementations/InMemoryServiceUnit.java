@@ -1,16 +1,14 @@
 package ru.PaleLuna.EduCheck.Services.Implementations;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.PaleLuna.EduCheck.Model.Unit;
-import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemoryDAO;
+import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemory.InMemoryDAO;
 import ru.PaleLuna.EduCheck.Services.IUnitService;
 
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class ServiceUnit<T extends Unit> implements IUnitService<T> {
+public abstract class InMemoryServiceUnit<T extends Unit> implements IUnitService<T> {
 
     private final InMemoryDAO<T> _repos;
 
@@ -25,7 +23,7 @@ public abstract class ServiceUnit<T extends Unit> implements IUnitService<T> {
     }
 
     @Override
-    public T FindByID(int id) {
+    public T FindByID(Long id) {
         return _repos.FindByID(id);
     }
 
@@ -35,7 +33,7 @@ public abstract class ServiceUnit<T extends Unit> implements IUnitService<T> {
     }
 
     @Override
-    public boolean DeleteByID(int id) {
+    public boolean DeleteByID(Long id) {
         return _repos.DeleteByID(id);
     }
 }

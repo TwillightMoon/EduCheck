@@ -10,4 +10,9 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 public class Student extends Unit {
     private int idUser;
     private int idGroup;
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }

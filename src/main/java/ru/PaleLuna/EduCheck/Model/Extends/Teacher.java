@@ -9,8 +9,8 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 public class Teacher extends Unit {
     private int idUser;
 
-    public Teacher(final int id, final int idUser){
-        this.id = id;
-        this.idUser = idUser;
+    @Override
+    public int getId() {
+        return 0;
     }
 }

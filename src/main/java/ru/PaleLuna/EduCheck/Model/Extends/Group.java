@@ -6,10 +6,12 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 @AllArgsConstructor
 @Data
 public class Group extends Unit {
+
+    private int id;
     private String groupName;
 
-    public Group(final int id, final String groupName){
-        this.id = id;
-        this.groupName = groupName;
+    @Override
+    public int getId() {
+        return id;
     }
 }

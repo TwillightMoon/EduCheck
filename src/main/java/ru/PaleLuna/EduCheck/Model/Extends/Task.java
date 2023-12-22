@@ -12,4 +12,9 @@ public class Task extends Unit {
 
     //Foreign keys
     private int idDiscipline;
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }

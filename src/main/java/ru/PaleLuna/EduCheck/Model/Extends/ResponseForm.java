@@ -19,4 +19,9 @@ public class ResponseForm extends Unit {
     private int idTeacher;
     private int idStudent;
     private int idTask;
+
+    @Override
+    public int getId() {
+        return 0;
+    }
 }

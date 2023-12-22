@@ -1,14 +1,16 @@
 package ru.PaleLuna.EduCheck.Model.Extends;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.PaleLuna.EduCheck.Model.Unit;
 
 @Data
+@AllArgsConstructor
 public class ResponseStatus extends Unit {
     private String name;
 
-    public ResponseStatus(int id, String name){
-        this.id = id;
-        this.name = name;
+    @Override
+    public int getId() {
+        return 0;
     }
 }

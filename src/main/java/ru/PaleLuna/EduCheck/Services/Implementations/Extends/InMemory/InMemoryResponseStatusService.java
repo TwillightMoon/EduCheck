@@ -7,8 +7,8 @@ import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemory.Extends.InMemo
 import ru.PaleLuna.EduCheck.Services.Implementations.InMemoryServiceUnit;
 
 @Service
-public class ResponseStatusService extends InMemoryServiceUnit<ResponseStatus> {
-    public ResponseStatusService(InMemoryResponseStatusDAO _repos) {
+public class InMemoryResponseStatusService extends InMemoryServiceUnit<ResponseStatus> {
+    public InMemoryResponseStatusService(InMemoryResponseStatusDAO _repos) {
         super(_repos);
     }
 }

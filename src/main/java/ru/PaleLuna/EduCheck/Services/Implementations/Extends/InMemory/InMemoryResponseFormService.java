@@ -6,8 +6,8 @@ import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemory.Extends.InMemo
 import ru.PaleLuna.EduCheck.Services.Implementations.InMemoryServiceUnit;
 
 @Service
-public class ResponseFormService extends InMemoryServiceUnit<ResponseForm> {
-    public ResponseFormService(InMemoryResponseFormDAO _repos) {
+public class InMemoryResponseFormService extends InMemoryServiceUnit<ResponseForm> {
+    public InMemoryResponseFormService(InMemoryResponseFormDAO _repos) {
         super(_repos);
     }
 }

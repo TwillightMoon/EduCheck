@@ -6,14 +6,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Controllers.IUnitController;
 import ru.PaleLuna.EduCheck.Model.Unit;
-import ru.PaleLuna.EduCheck.Services.Implementations.ServiceUnit;
+import ru.PaleLuna.EduCheck.Services.IUnitService;
+import ru.PaleLuna.EduCheck.Services.Implementations.InMemoryServiceUnit;
 
 import java.util.List;
 
 @AllArgsConstructor
 public abstract class UnitController<T extends Unit> implements IUnitController<T> {
 
-    private final ServiceUnit<T> _service;
+    private final IUnitService<T> _service;
 
     @Override
     @ResponseBody
@@ -32,7 +33,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @GetMapping("{id}")
-    public ResponseEntity<T> FindById(@PathVariable("id") int id) {
+    public ResponseEntity<T> FindById(@PathVariable("id") Long id) {
         T unit = _service.FindByID(id);
         boolean isUser = IsNotNull(unit);
 
@@ -55,7 +56,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> DeleteById(@PathVariable("id") int id) {
+    public ResponseEntity<String> DeleteById(@PathVariable("id") Long id) {
         boolean isDeleted = _service.DeleteByID(id);
 
         if(isDeleted)

@@ -5,7 +5,7 @@ import java.util.List;
 public interface CRUDMethods<T> {
     List<T> FindAll();
     T Save(T unit);
-    T FindByID(int id);
+    T FindByID(Long id);
     T Update(T unit);
-    boolean DeleteByID(int id);
+    boolean DeleteByID(Long id);
 }

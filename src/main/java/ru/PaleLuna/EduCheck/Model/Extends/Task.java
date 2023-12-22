@@ -14,7 +14,7 @@ public class Task extends Unit {
     private int idDiscipline;
 
     @Override
-    public int getId() {
-        return 0;
+    public Long getId() {
+        return null;
     }
 }

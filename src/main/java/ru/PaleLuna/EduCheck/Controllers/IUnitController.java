@@ -11,9 +11,9 @@ public interface IUnitController<T extends Unit> {
     public List<T> GetAllUnits();
 
     public T SaveUnit(@RequestBody T unit);
-    public ResponseEntity<T> FindById(int id);
+    public ResponseEntity<T> FindById(Long id);
     public ResponseEntity<String> Update(@RequestBody T unit);
 
     //TODO доделать вариации ответов
-    public ResponseEntity<String> DeleteById(int id);
+    public ResponseEntity<String> DeleteById(Long id);
 }

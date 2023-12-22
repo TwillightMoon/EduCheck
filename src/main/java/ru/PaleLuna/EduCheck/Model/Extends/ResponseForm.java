@@ -21,7 +21,7 @@ public class ResponseForm extends Unit {
     private int idTask;
 
     @Override
-    public int getId() {
-        return 0;
+    public Long getId() {
+        return null;
     }
 }

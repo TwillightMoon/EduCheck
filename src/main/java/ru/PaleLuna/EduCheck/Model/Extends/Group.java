@@ -11,7 +11,7 @@ public class Group extends Unit {
     private String groupName;
 
     @Override
-    public int getId() {
-        return id;
+    public Long getId() {
+        return null;
     }
 }

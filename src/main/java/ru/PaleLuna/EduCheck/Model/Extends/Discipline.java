@@ -8,12 +8,12 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 @AllArgsConstructor
 public class Discipline extends Unit {
 
-    private int id;
+    private Long id;
 
     private String disciplineName;
 
     @Override
-    public int getId() {
+    public Long getId() {
         return id;
     }
 }

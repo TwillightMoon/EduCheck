@@ -8,11 +8,12 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 @AllArgsConstructor
 @Data
 public class Student extends Unit {
+
     private int idUser;
     private int idGroup;
 
     @Override
-    public int getId() {
-        return 0;
+    public Long getId() {
+        return null;
     }
 }

@@ -8,5 +8,5 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 public abstract class Unit {
-    abstract public int getId();
+    abstract public Long getId();
 }

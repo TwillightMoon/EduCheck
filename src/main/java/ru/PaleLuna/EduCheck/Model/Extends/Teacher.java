@@ -1,16 +1,19 @@
 package ru.PaleLuna.EduCheck.Model.Extends;
 
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.PaleLuna.EduCheck.Model.Unit;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Teacher extends Unit {
     private int idUser;
 
     @Override
-    public int getId() {
-        return 0;
+    public Long getId() {
+        return null;
     }
 }

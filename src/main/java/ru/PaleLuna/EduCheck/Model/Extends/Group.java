@@ -1,17 +1,25 @@
 package ru.PaleLuna.EduCheck.Model.Extends;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 import ru.PaleLuna.EduCheck.Model.Unit;
 
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Group extends Unit {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private int id;
     private String groupName;
 
     @Override
     public Long getId() {
-        return null;
+        return id;
     }
 }

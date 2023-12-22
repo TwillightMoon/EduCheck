@@ -1,8 +1,8 @@
-package ru.PaleLuna.EduCheck.Repositories.Implementations.Extends;
+package ru.PaleLuna.EduCheck.Repositories.Implementations.InMemory.Extends;
 
 import org.springframework.stereotype.Repository;
 import ru.PaleLuna.EduCheck.Model.Extends.Discipline;
-import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemoryDAO;
+import ru.PaleLuna.EduCheck.Repositories.Implementations.InMemory.InMemoryDAO;
 
 @Repository
 public class InMemoryDisciplinesDAO extends InMemoryDAO<Discipline> {

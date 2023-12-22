@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Controllers.Implementations.UnitController;
 import ru.PaleLuna.EduCheck.Model.Extends.User;
 import ru.PaleLuna.EduCheck.Services.IUnitService;
+import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 import ru.PaleLuna.EduCheck.Services.Implementations.Extends.InDataBase.UserService;
 import ru.PaleLuna.EduCheck.Services.Implementations.Extends.InMemory.InMemoryUserService;
 
@@ -12,7 +13,7 @@ import ru.PaleLuna.EduCheck.Services.Implementations.Extends.InMemory.InMemoryUs
 @RequestMapping("/v1/user")
 public class UserController extends UnitController<User> {
 
-    public UserController(UserService _service) {
+    public UserController(EntityService<User> _service) {
         super(_service);
     }
 }

@@ -33,6 +33,8 @@ public abstract class EntityService <T extends Unit> implements IUnitService<T> 
 
     @Override
     public boolean DeleteByID(Long id) {
-        return false;
+        _repos.deleteById(id);
+
+        return !_repos.existsById(id);
     }
 }

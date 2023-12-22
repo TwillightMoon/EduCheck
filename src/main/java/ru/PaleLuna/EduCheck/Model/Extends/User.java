@@ -12,23 +12,28 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 public class User extends Unit {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //Login Data
-    @Column(unique = true)
+    @Column(name = "Login", unique = true, nullable = false)
     private String login;
-    @Column(unique = true)
+
+    @Column(name = "E-mail", unique = true, nullable = false)
     private String email;
+
+    @Column(name = "Password", nullable = false)
     private String password;
 
-    //Personal information
+    @Column(name = "FirstName", nullable = false)
     private String firstName;
+
+    @Column(name = "LastName")
     private String lastName;
 
-    private LocalDate dayOfBirth;
+    @Column(name = "BirthDay", nullable = false)
+    private LocalDate birthDay;
 
     @Override
     public Long getId() {

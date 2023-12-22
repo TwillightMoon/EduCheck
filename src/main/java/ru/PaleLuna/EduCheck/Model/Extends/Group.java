@@ -12,8 +12,10 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 public class Group extends Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idGroup")
     private Long id;
 
+    @Column(name = "GroupName", nullable = false, unique = true)
     private String groupName;
 
     @Override

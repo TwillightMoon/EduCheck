@@ -1,9 +1,6 @@
 package ru.PaleLuna.EduCheck.Model.Extends;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +15,8 @@ public class ResponseStatus extends Unit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(name = "Status_name", unique = true, nullable = false)
+    private String statusName;
 
     @Override
     public Long getId() {

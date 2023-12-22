@@ -1,9 +1,6 @@
 package ru.PaleLuna.EduCheck.Model.Extends;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,14 +13,19 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 public class Task extends Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idTask")
     private Long id;
 
 
+    @Column(name = "Task_name", unique = true, nullable = false)
     private String taskName;
-    private String description;
 
-    //Foreign keys
-    private int idDiscipline;
+    @Column(name = "Task_Description", length = 256)
+    private String taskDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "idDiscipline", nullable = false)
+    private Discipline discipline;
 
     @Override
     public Long getId() {

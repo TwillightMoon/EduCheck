@@ -1,9 +1,6 @@
 package ru.PaleLuna.EduCheck.Model.Extends;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,12 +17,18 @@ public class Student extends Unit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "idUser", nullable = false, unique = true)
+    private User user;
 
-    private int idUser;
-    private int idGroup;
+    @ManyToOne
+    @JoinColumn(name = "idGroup")
+    private Group group;
 
     @Override
     public Long getId() {
         return id;
     }
+
+
 }

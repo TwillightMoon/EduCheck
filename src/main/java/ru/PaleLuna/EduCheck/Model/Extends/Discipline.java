@@ -11,7 +11,6 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 @NoArgsConstructor
 @Entity
 public class Discipline extends Unit {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDiscipline")

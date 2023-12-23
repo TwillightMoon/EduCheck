@@ -20,7 +20,7 @@ public class Student extends Unit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true, optional = false)
     @JoinColumn(name = "idUser", nullable = false, unique = true)
     private User user;
 

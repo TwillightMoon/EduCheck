@@ -20,7 +20,6 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<T> GetAllUnits() {
         return _service.FindAll();
     }
@@ -36,7 +35,6 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @GetMapping("{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<T> FindById(@PathVariable("id") Long id) {
         T unit = _service.FindByID(id);
         boolean isUser = IsNotNull(unit);

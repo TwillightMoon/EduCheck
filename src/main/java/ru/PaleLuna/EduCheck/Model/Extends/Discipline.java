@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import ru.PaleLuna.EduCheck.Model.Unit;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class Discipline extends Unit {
     @Column(name = "Discipline_Name", unique = true, nullable = false)
     private String disciplineName;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "disciplines")
+    @ManyToMany(mappedBy = "disciplines")
     @JsonIgnore
     private List<Teacher> teachers = new ArrayList<>();
 

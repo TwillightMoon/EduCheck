@@ -37,7 +37,7 @@ public class ResponseForm extends Unit {
     @JoinColumn(name = "idTeacher")
     private Teacher teacher;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "idStudent", nullable = false)
     private Student student;
 

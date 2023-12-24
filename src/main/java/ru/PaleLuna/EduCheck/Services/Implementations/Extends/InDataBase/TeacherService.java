@@ -12,4 +12,13 @@ public class TeacherService extends EntityService<Teacher> {
     public TeacherService(ITeacherRepos _repos) {
         super(_repos);
     }
+    public boolean IsHasDiscipline(Long teacherId, Long disciplineId){
+        Teacher teacher = _repos.findEntityById(teacherId);
+
+        return teacher.getDisciplines().
+                stream().
+                filter(element -> element.getId() == disciplineId)
+                .findFirst()
+                .orElse(null) != null;
+    }
 }

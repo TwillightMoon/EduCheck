@@ -12,8 +12,7 @@ import ru.PaleLuna.EduCheck.Services.Implementations.Extends.InMemory.InMemoryUs
 @Controller
 @RequestMapping("/v1/user")
 public class UserController extends UnitController<User> {
-
-    public UserController(EntityService<User> _service) {
+    public UserController(UserService _service) {
         super(_service);
     }
 }

@@ -3,6 +3,7 @@ package ru.PaleLuna.EduCheck.Controllers.Implementations;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Controllers.IUnitController;
 import ru.PaleLuna.EduCheck.Model.Unit;
@@ -19,6 +20,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<T> GetAllUnits() {
         return _service.FindAll();
     }
@@ -27,12 +29,14 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @ResponseBody
     @PostMapping("/save")
     public T SaveUnit(@RequestBody T unit) {
+        System.out.println("Check1");
         return _service.Save(unit);
     }
 
     @Override
     @ResponseBody
     @GetMapping("{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<T> FindById(@PathVariable("id") Long id) {
         T unit = _service.FindByID(id);
         boolean isUser = IsNotNull(unit);

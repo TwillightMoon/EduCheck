@@ -16,6 +16,8 @@ public class User extends Unit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String role;
+
     //Login Data
     @Column(name = "Login", unique = true, nullable = false)
     private String login;

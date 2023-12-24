@@ -9,7 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public abstract class EntityService <T extends Unit> implements IUnitService<T> {
-    private final IEntityRepos<T> _repos;
+    protected final IEntityRepos<T> _repos;
 
     @Override
     public List<T> FindAll() {

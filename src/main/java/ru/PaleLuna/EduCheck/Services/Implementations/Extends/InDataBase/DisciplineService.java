@@ -3,6 +3,7 @@ package ru.PaleLuna.EduCheck.Services.Implementations.Extends.InDataBase;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.PaleLuna.EduCheck.Model.Extends.Discipline;
+import ru.PaleLuna.EduCheck.Model.Extends.Teacher;
 import ru.PaleLuna.EduCheck.Repositories.DBRepos.IDisciplineRepos;
 import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 

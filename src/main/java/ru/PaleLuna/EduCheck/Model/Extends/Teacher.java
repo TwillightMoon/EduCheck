@@ -30,7 +30,7 @@ public class Teacher extends Unit {
             inverseJoinColumns = @JoinColumn(name = "discipline_id")
     )
     private List<Discipline> disciplines = new ArrayList<>();
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name = "TeacherHasGroup",
             joinColumns = @JoinColumn(name = "teacher_id"),

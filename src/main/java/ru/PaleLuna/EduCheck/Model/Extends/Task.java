@@ -23,7 +23,7 @@ public class Task extends Unit {
     @Column(name = "Task_Description", length = 256)
     private String taskDescription;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "idDiscipline", nullable = false)
     private Discipline discipline;
 

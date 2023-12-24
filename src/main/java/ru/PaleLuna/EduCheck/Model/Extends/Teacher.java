@@ -16,12 +16,11 @@ import java.util.List;
 public class Teacher extends Unit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTeacher")
     private Long id;
 
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JoinColumn(name = "idUser", nullable = false, unique = true)
+    @JoinColumn(name = "id", nullable = false, unique = true)
+    @MapsId
     private User user;
 
     @ManyToMany

@@ -15,13 +15,12 @@ import ru.PaleLuna.EduCheck.Model.Unit;
 @NoArgsConstructor
 @Entity
 public class Student extends Unit {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true, optional = false)
-    @JoinColumn(name = "idUser", nullable = false, unique = true)
+    @JoinColumn(name = "id", nullable = false, unique = true)
+    @MapsId
     private User user;
 
     @ManyToOne

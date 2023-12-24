@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.PaleLuna.EduCheck.Model.Extends.ResponseForm;
 import ru.PaleLuna.EduCheck.Model.Extends.Task;
+import ru.PaleLuna.EduCheck.Model.Extends.Teacher;
 import ru.PaleLuna.EduCheck.Repositories.DBRepos.IResponseFormRepos;
 import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 
@@ -24,14 +25,21 @@ public class ResponseFormService extends EntityService<ResponseForm> {
 
     @Override
     public ResponseForm Save(ResponseForm responseForm){
-        Task task = taskService.FindByID(responseForm.getTask().getId());
-        Long teacherId = responseForm.getTeacher().getId();
-        Long disciplineId = task.getDiscipline().getId();
-
-        if(teacherService.IsHasDiscipline(teacherId, disciplineId)){
+        if(TryCheckTeacherHasDiscipline(responseForm))
             return _repos.save(responseForm);
-        }
 
         throw new IllegalArgumentException("Учитель не ведет указанную дисциплину");
+    }
+
+    private boolean TryCheckTeacherHasDiscipline(ResponseForm responseForm){
+        Teacher teacher = responseForm.getTeacher();
+        if(teacher == null)
+            return true;
+
+        Task task = taskService.FindByID(responseForm.getTask().getId());
+        Long teacherId = teacher.getId();
+        Long disciplineId = task.getDiscipline().getId();
+
+        return teacherService.IsHasDiscipline(teacherId, disciplineId);
     }
 }

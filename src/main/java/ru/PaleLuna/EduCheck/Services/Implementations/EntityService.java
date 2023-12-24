@@ -28,7 +28,7 @@ public abstract class EntityService <T extends Unit> implements IUnitService<T> 
 
     @Override
     public T Update(T unit) {
-        return _repos.save(unit);
+        return Save(unit);
     }
 
     @Override

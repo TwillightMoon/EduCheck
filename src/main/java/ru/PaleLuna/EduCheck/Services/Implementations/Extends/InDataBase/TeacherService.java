@@ -21,4 +21,15 @@ public class TeacherService extends EntityService<Teacher> {
                 .findFirst()
                 .orElse(null) != null;
     }
+    public boolean IsHasGroup(Long teacherId, Long groupId){
+        Teacher teacher = _repos.findEntityById(teacherId);
+
+        return teacher.getGroups().
+                stream().
+                filter(element -> element.getId() == groupId)
+                .findFirst()
+                .orElse(null) != null;
+    }
+
+
 }

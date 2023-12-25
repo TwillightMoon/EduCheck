@@ -27,7 +27,6 @@ public class UserService extends EntityService<User> implements UserDetailsServi
     @Override
     public User Save(User unit) {
         unit.setPassword(encoder.encode(unit.getPassword()));
-        System.out.println("Check");
         return super.Save(unit);
     }
 

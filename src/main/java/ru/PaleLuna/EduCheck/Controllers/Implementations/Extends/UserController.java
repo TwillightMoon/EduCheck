@@ -27,5 +27,4 @@ public class UserController extends UnitController<User> {
         System.out.println("CheckRole");
         return super.GetAllUnits();
     }
-
 }

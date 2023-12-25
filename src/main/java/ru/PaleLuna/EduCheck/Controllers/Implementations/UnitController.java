@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.PaleLuna.EduCheck.Controllers.IUnitController;
 import ru.PaleLuna.EduCheck.Model.Unit;
 import ru.PaleLuna.EduCheck.Services.IUnitService;
-import ru.PaleLuna.EduCheck.Services.Implementations.InMemoryServiceUnit;
 
 import java.util.List;
 
@@ -20,6 +19,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<T> GetAllUnits() {
         return _service.FindAll();
     }
@@ -27,6 +27,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @PostMapping("/save")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public T SaveUnit(@RequestBody T unit) {
         System.out.println("Check1");
         return _service.Save(unit);
@@ -35,6 +36,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
     @Override
     @ResponseBody
     @GetMapping("{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<T> FindById(@PathVariable("id") Long id) {
         T unit = _service.FindByID(id);
         boolean isUser = IsNotNull(unit);
@@ -47,6 +49,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
 
     @Override
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> Update(@RequestBody T unit) {
         boolean isUser = IsNotNull(_service.Update(unit));
 
@@ -58,6 +61,7 @@ public abstract class UnitController<T extends Unit> implements IUnitController<
 
     @Override
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> DeleteById(@PathVariable("id") Long id) {
         boolean isDeleted = _service.DeleteByID(id);
 

@@ -2,6 +2,7 @@ package ru.PaleLuna.EduCheck.Services.Implementations.Extends.InDataBase;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import ru.PaleLuna.EduCheck.Config.UserDetails;
 import ru.PaleLuna.EduCheck.Model.Extends.*;
 import ru.PaleLuna.EduCheck.Repositories.DBRepos.IResponseFormRepos;
 import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
@@ -41,7 +42,9 @@ public class ResponseFormService extends EntityService<ResponseForm> {
     }
 
 
-    public List<ResponseForm> GetResFormsByStatusForTeach(Long idStatus, Long idTeacher){
+    public List<ResponseForm> GetResFormsByStatusForTeach(Long idStatus, UserDetails userDetails){
+        Long idTeacher = teacherService.GetUserByLogin(userDetails.getUsername()).getId();
+
         return _repos.getResponseFormsByStatusForTeacher(idTeacher, idStatus);
     }
     public List<ResponseForm> GetResFormsForTeach(Long idStatus, Long idTeacher){

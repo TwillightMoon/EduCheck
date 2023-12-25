@@ -4,9 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.PaleLuna.EduCheck.Config.UserDetails;
 import ru.PaleLuna.EduCheck.Controllers.Implementations.UnitController;
 import ru.PaleLuna.EduCheck.Model.Extends.ResponseForm;
 import ru.PaleLuna.EduCheck.Model.Extends.User;
@@ -28,11 +30,9 @@ public class ResponseFormController extends UnitController<ResponseForm> {
     @GetMapping("status/{id}")
     @ResponseBody
     @PreAuthorize("hasAuthority('ROLE_TEACHER')")
-    public List<ResponseForm> GetResFormsByStatusForTeach(@PathVariable("id") int idStatus){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Long idTeacher = ((User) authentication.getPrincipal()).getId();
-
-        return _service.GetResFormsByStatusForTeach((long) idStatus, idTeacher);
+    public List<ResponseForm> GetResFormsByStatusForTeach(@AuthenticationPrincipal UserDetails userDetails,
+                                                          @PathVariable("id") int idStatus){
+        return _service.GetResFormsByStatusForTeach((long) idStatus, userDetails);
     }
 
 }

@@ -28,6 +28,10 @@ public class TeacherService extends EntityService<Teacher> {
         return super.Save(teacher);
     }
 
+    public User GetUserByLogin(String login){
+        return userService.FindByLogin(login);
+    }
+
     public boolean IsHasDiscipline(Long teacherId, Long disciplineId){
         Teacher teacher = _repos.findEntityById(teacherId);
 
@@ -46,6 +50,4 @@ public class TeacherService extends EntityService<Teacher> {
                 .findFirst()
                 .orElse(null) != null;
     }
-
-
 }

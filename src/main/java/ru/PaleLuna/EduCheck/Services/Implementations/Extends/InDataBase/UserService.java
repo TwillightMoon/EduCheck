@@ -42,4 +42,8 @@ public class UserService extends EntityService<User> implements UserDetailsServi
     public List<User> FindByRole(String role){
         return repos.findUsersByRole(role);
     }
+
+    public User FindByLogin(String login){
+        return repos.FindByLogin(login);
+    }
 }

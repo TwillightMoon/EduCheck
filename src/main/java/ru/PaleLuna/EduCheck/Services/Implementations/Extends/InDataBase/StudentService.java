@@ -27,4 +27,8 @@ public class StudentService extends EntityService<Student> {
 
        return super.Save(student);
     }
+
+    public User GetUserByLogin(String login){
+        return userService.FindByLogin(login);
+    }
 }

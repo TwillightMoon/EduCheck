@@ -12,6 +12,9 @@ import java.util.Optional;
 @Repository
 public interface IUserRepos extends IEntityRepos<User> {
     Optional<User> findByLogin(String login);
+
+    @Query("SELECT user FROM User user WHERE user.login = :login")
+    User FindByLogin(String login);
     @Query("SELECT user FROM User user WHERE user.role = :role")
     List<User> findUsersByRole(@Param("role") String role);
 

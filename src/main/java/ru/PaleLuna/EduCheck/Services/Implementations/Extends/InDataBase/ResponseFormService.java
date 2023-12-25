@@ -7,7 +7,9 @@ import ru.PaleLuna.EduCheck.Model.Extends.*;
 import ru.PaleLuna.EduCheck.Repositories.DBRepos.IResponseFormRepos;
 import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Primary
@@ -58,11 +60,27 @@ public class ResponseFormService extends EntityService<ResponseForm> {
 
         ResponseForm responseForm = _repos.findEntityById(idResForm);
 
-        if(responseForm.getTeacher().getId() != idTeacher)
+        if(!Objects.equals(responseForm.getTeacher().getId(), idTeacher)
+                || responseForm.getStatus().getId() < 2)
             return false;
 
         responseForm.setMark(mark);
         responseForm.setStatus(statusService.FindByID(3L));
+
+        _repos.save(responseForm);
+        return true;
+    }
+
+    public boolean UploadAnswer(UserDetails userDetails, Long idResForm){
+        Long idStudent = studentService.GetUserByLogin(userDetails.getUsername()).getId();
+
+        ResponseForm responseForm = _repos.findEntityById(idResForm);
+
+        if(!Objects.equals(responseForm.getStudent().getId(), idStudent))
+            return false;
+
+        responseForm.setStatus(statusService.FindByID(2L));
+        responseForm.setUploadDate(LocalDate.now());
 
         _repos.save(responseForm);
         return true;

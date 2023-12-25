@@ -26,7 +26,6 @@ public class ResponseFormController extends UnitController<ResponseForm> {
         this._service = _service;
     }
 
-
     @GetMapping("status/{id}")
     @ResponseBody
     @PreAuthorize("hasAuthority('ROLE_TEACHER')")
@@ -37,7 +36,7 @@ public class ResponseFormController extends UnitController<ResponseForm> {
 
     @GetMapping("all-form")
     @ResponseBody
-    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_TEACHER', 'ROLE_STUDENT')")
     public List<ResponseForm> GetResFormForTeach(@AuthenticationPrincipal UserDetails userDetails){
         return _service.GetResFormsForTeach(userDetails);
     }
@@ -50,6 +49,16 @@ public class ResponseFormController extends UnitController<ResponseForm> {
 
         if(_service.UpdateMark(userDetails, (long)id, mark))
             return ResponseEntity.ok("Mark was set!");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something wrong");
+    }
+
+    @PutMapping("upload/{id}")
+    @PreAuthorize("hasAuthority('ROLE_STUDENT')")
+    public ResponseEntity<String> UploadAnswer(@AuthenticationPrincipal UserDetails userDetails,
+                                               @PathVariable("id") int id){
+        if(_service.UploadAnswer(userDetails, (long) id))
+            return ResponseEntity.ok("Answer was upload!");
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something wrong");
     }

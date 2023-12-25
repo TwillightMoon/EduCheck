@@ -47,12 +47,17 @@ public class ResponseFormService extends EntityService<ResponseForm> {
 
         return _repos.getResponseFormsByStatusForTeacher(idTeacher, idStatus);
     }
-    public List<ResponseForm> GetResFormsForTeach(Long idStatus, Long idTeacher){
+    public List<ResponseForm> GetResFormsForTeach(UserDetails userDetails){
+        Long idTeacher = teacherService.GetUserByLogin(userDetails.getUsername()).getId();
+
         return _repos.getResponseFormsForTeacher(idTeacher);
     }
 
-    public boolean UpdateMark(Long idTeacher, Long idResForm, int mark){
+    public boolean UpdateMark(UserDetails userDetails, Long idResForm, int mark){
+        Long idTeacher = teacherService.GetUserByLogin(userDetails.getUsername()).getId();
+
         ResponseForm responseForm = _repos.findEntityById(idResForm);
+
         if(responseForm.getTeacher().getId() != idTeacher)
             return false;
 

@@ -35,4 +35,22 @@ public class ResponseFormController extends UnitController<ResponseForm> {
         return _service.GetResFormsByStatusForTeach((long) idStatus, userDetails);
     }
 
+    @GetMapping("all-form")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    public List<ResponseForm> GetResFormForTeach(@AuthenticationPrincipal UserDetails userDetails){
+        return _service.GetResFormsForTeach(userDetails);
+    }
+
+    @PutMapping("mark-it/{id}/{mark}")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    public ResponseEntity<String> SetMark(@AuthenticationPrincipal UserDetails userDetails,
+                                          @PathVariable("id") int id,
+                                          @PathVariable("mark") int mark){
+
+        if(_service.UpdateMark(userDetails, (long)id, mark))
+            return ResponseEntity.ok("Mark was set!");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something wrong");
+    }
 }

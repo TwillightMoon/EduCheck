@@ -18,13 +18,4 @@ public class UserController extends UnitController<User> {
     public UserController(UserService _service) {
         super(_service);
     }
-
-    @Override
-    @ResponseBody
-    @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public List<User> GetAllUnits() {
-        System.out.println("CheckRole");
-        return super.GetAllUnits();
-    }
 }

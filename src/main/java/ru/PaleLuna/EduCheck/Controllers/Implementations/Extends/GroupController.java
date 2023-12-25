@@ -18,11 +18,8 @@ public class GroupController extends UnitController<Group> {
     }
 
     @Override
-    @ResponseBody
-    @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_STUDENT')")
+    @PreAuthorize("permitAll()")
     public List<Group> GetAllUnits() {
-        System.out.println("CheckRole");
         return super.GetAllUnits();
     }
 }

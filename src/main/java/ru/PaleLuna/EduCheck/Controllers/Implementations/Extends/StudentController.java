@@ -10,7 +10,6 @@ import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 @Controller
 @RequestMapping("/v1/student")
 public class StudentController extends UnitController<Student> {
-
     public StudentController(EntityService<Student> service) {
         super(service);
     }

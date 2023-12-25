@@ -28,7 +28,7 @@ public class TaskController extends UnitController<Task> {
         return super.Update(unit);
     }
     @Override
-    @PreAuthorize("hasAnyAuthority('ROLE_TEACHER', 'ROLE_ADMIN', 'ROLE_STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_TEACHER', 'ROLE_ADMIN')")
     public ResponseEntity<Task> FindById(@PathVariable("id") Long id) {
         return super.FindById(id);
     }

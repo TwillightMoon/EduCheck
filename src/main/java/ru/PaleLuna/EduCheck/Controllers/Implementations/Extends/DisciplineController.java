@@ -12,11 +12,19 @@ import ru.PaleLuna.EduCheck.Controllers.Implementations.UnitController;
 import ru.PaleLuna.EduCheck.Model.Extends.Discipline;
 import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/v1/discipline")
 public class DisciplineController extends UnitController<Discipline> {
     public DisciplineController(EntityService<Discipline> service) {
         super(service);
+    }
+
+    @Override
+    @PreAuthorize("permitAll()")
+    public List<Discipline> GetAllUnits() {
+        return super.GetAllUnits();
     }
 
     @Override

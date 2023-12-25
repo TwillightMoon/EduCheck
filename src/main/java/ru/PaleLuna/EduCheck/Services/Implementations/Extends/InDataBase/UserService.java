@@ -10,6 +10,7 @@ import ru.PaleLuna.EduCheck.Model.Extends.User;
 import ru.PaleLuna.EduCheck.Repositories.DBRepos.IUserRepos;
 import ru.PaleLuna.EduCheck.Services.Implementations.EntityService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,5 +37,9 @@ public class UserService extends EntityService<User> implements UserDetailsServi
 
         return user.map(ru.PaleLuna.EduCheck.Config.UserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException(login + " not found"));
+    }
+
+    public List<User> FindByRole(String role){
+        return repos.findUsersByRole(role);
     }
 }

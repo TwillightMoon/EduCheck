@@ -15,7 +15,17 @@ import java.util.List;
 @Controller
 @RequestMapping("/v1/user")
 public class UserController extends UnitController<User> {
-    public UserController(UserService _service) {
-        super(_service);
+    private final UserService service;
+
+    public UserController(UserService service) {
+        super(service);
+        this.service = service;
+    }
+
+    @ResponseBody
+    @GetMapping("role/{role}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public List<User> GetUserByRole(@PathVariable("role") String role){
+        return service.FindByRole(role);
     }
 }

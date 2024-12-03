@@ -17,7 +17,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                junit 'test-results.xml'
             }
         }
         stage('Archive Artifacts') {

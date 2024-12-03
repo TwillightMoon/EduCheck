@@ -1,42 +1,39 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out the code...'
-                bat 'echo Code checked out'
+                echo 'Checking out the repository...'
+                checkout scm
             }
         }
-
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                echo 'Build completed.'
+                echo 'Building the project...'
+                bat 'echo "Build completed successfully." > build.log'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                echo 'All tests passed.'
+                junit 'test-results.xml'
             }
         }
-
-        stage('Deploy') {
+        stage('Archive Artifacts') {
             steps {
-                echo 'Deploying the application...'
-                echo 'Application deployed successfully.'
+                echo 'Archiving build artifacts...'
+                archiveArtifacts artifacts: '*.log, test-results.xml', allowEmptyArchive: true
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline execution completed.'
-        }
         success {
-            echo 'Pipeline finished successfully.'
+            echo 'Pipeline completed successfully!'
+        }
+        unstable {
+            echo 'Pipeline completed with warnings (unstable build).'
         }
         failure {
             echo 'Pipeline failed.'

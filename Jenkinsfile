@@ -1,118 +1,41 @@
 pipeline {
     agent any
-    environment {
-        DB_URL = 'mysql+pymysql://usr:pwd@host:<port>/db'
-        DISABLE_AUTH = true
-        GOOGLE_ACCESS_KEY_ID = credentials('google-access-key-id')
-    }
 
     stages {
-        stage('Сборка') {
+        stage('Checkout') {
             steps {
-                echo 'Сборка приложения...'
-                bat '''
-                    echo 'Этот блок содержит многострочные шаги'
-                    ls -lh
-                '''
-                bat '''
-                    echo 'URL базы данных: ${DB_URL}'
-                    echo 'DISABLE_AUTH: ${DISABLE_AUTH}'
-                    env
-                '''
-                echo 'Запуск задачи с номером сборки: ${env.BUILD_NUMBER} на ${env.JENKINS_URL}'
+                echo 'Checking out the repository...'
+                checkout scm
             }
         }
-        stage('Тестирование') {
+        stage('Build') {
             steps {
-                echo 'Тестирование приложения...'
+                echo 'Building the project...'
+                bat 'echo "Build completed successfully." > build.log'
             }
         }
-        stage('Деплой на стейджинг') {
+        stage('Test') {
             steps {
-                echo 'Проверка наличия команд'
-                bat 'which chmod || echo "chmod not found"'
-                bat 'which ./deploy staging || echo "./deploy not found"'
-                bat 'which ./smoke-tests || echo "./smoke-tests not found"'
-
-                echo 'Изменение прав на выполнение скриптов'
-                bat 'chmod u+x deploy smoke-tests || { echo "chmod failed"; exit 1; }'
-
-                echo 'Деплой на стейджинг'
-                bat './deploy staging || { echo "deploy failed"; exit 1; }'
-
-                echo 'Выполнение smoke-тестов'
-                bat './smoke-tests || { echo "smoke-tests failed"; exit 1; }'
+                echo 'Running tests...'
             }
         }
-        stage('Проверка работоспособности') {
+        stage('Archive Artifacts') {
             steps {
-                input 'Следует ли отправить на продакшн?'
-            }
-        }
-        stage('Деплой на продакшн') {
-            steps {
-                bat './deploy prod || { echo "deploy to prod failed"; exit 1; }'
+                echo 'Archiving build artifacts...'
+                archiveArtifacts artifacts: '*.log, test-results.xml', allowEmptyArchive: true
             }
         }
     }
 
     post {
-        always {
-            script {
-                node {
-                    echo 'Это всегда будет выполняться независимо от статуса завершения'
-                }
-            }
-        }
-        cleanup {
-            script {
-                node {
-                    echo 'Очистка рабочей области'
-                    bat 'ls -l' // Проверка прав доступа
-                    retry(3) { // Повторить 3 раза в случае неудачи
-                        cleanWs()
-                    }
-                }
-            }
-        }
         success {
-            script {
-                node {
-                    echo 'Это будет выполняться, если сборка прошла успешно'
-                }
-            }
-        }
-        failure {
-            script {
-                node {
-                    echo 'Это будет выполняться, если задача провалилась'
-                    mail to: 'ваша почта@gmail.com',
-                         subject: '${env.JOB_NAME} – Сборка № ${env.BUILD_NUMBER} провалилась',
-                         body: 'Для получения дополнительной информации о провале пайплайна, проверьте консольный вывод по адресу ${env.BUILD_URL}'
-                }
-            }
+            echo 'Pipeline completed successfully!'
         }
         unstable {
-            script {
-                node {
-                    echo 'Это будет выполняться, если статус завершения был "нестабильный", обычно из-за провала тестов'
-                }
-            }
+            echo 'Pipeline completed with warnings (unstable build).'
         }
-        changed {
-            script {
-                node {
-                    echo 'Это будет выполняться, если состояние пайплайна изменилось'
-                    echo 'Например, если предыдущий запуск провалился, а сейчас успешный'
-                }
-            }
-        }
-        fixed {
-            script {
-                node {
-                    echo 'Это будет выполняться, если предыдущий запуск был провальным или нестабильным, а сейчас успешный'
-                }
-            }
+        failure {
+            echo 'Pipeline failed.'
         }
     }
 }

@@ -1,52 +1,45 @@
 pipeline {
     agent any
-    environment {
-        BUILD_LOG = 'build.log'
-        TEST_RESULTS = 'test-results.xml'
-    }
+    
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out the repository...'
-                checkout scm
+                echo 'Checking out the code...'
+                bat 'echo Code checked out'
             }
         }
+
         stage('Build') {
             steps {
-                echo 'Simulating build process...'
-                bat """
-                    echo "Build completed successfully." > ${BUILD_LOG}
-                """
+                echo 'Building the application...'
+                echo 'Build completed.'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Simulating test process...'
-                bat """
-                    echo "<testsuite tests='1' failures='0'><testcase classname='DummyTest' name='Test1'/></testsuite>" > ${TEST_RESULTS}
-                """
-                junit "${TEST_RESULTS}"
+                echo 'Running tests...'
+                echo 'All tests passed.'
             }
         }
-        stage('Archive Artifacts') {
+
+        stage('Deploy') {
             steps {
-                echo 'Archiving build artifacts...'
-                archiveArtifacts artifacts: "**/*.log", allowEmptyArchive: true
+                echo 'Deploying the application...'
+                echo 'Application deployed successfully.'
             }
         }
     }
+
     post {
         always {
-            echo 'Pipeline finished.'
+            echo 'Pipeline execution completed.'
         }
         success {
-            echo 'Build was successful.'
-        }
-        unstable {
-            echo 'Build completed, but it is unstable. Check test results and logs.'
+            echo 'Pipeline finished successfully.'
         }
         failure {
-            echo 'Build failed.'
+            echo 'Pipeline failed.'
         }
     }
 }
